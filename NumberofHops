@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+
+const int MOD = 1000000007;
+
+int countWays(int N) {
+    if (N <= 2)
+        return N;
+    
+    std::vector<int> dp(N + 1, 0);
+    dp[1] = 1;
+    dp[2] = 2;
+    dp[3] = 4;
+
+    for (int i = 4; i <= N; i++) {
+        dp[i] = (dp[i - 1] + dp[i - 2] + dp[i - 3]) % MOD;
+    }
+
+    return dp[N];
+}
+
+int main() {
+    int N1 = 1;
+    std::cout << "Example 1: " << countWays(N1) << std::endl;
+
+    int N2 = 4;
+    std::cout << "Example 2: " << countWays(N2) << std::endl;
+
+    return 0;
+}
